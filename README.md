@@ -229,4 +229,21 @@ This project also provides practice in important database management concepts, i
 - Inserted Data Samples
 - SQL Queries + Results
 - Contribution Sheet
+Contribution Sheet
+
+Project Title: Research Publication Tracker
+
+This project was completed by Hussain Ali H. Ali. All main project tasks were completed individually, including requirements analysis, ER/EER design, relational schema design, constraints, MySQL table creation, data insertion, SQL queries, query results, and report preparation.
+
 - Conclusion
+Conclusion
+
+The Research Publication Tracker database project was designed to manage and organize research publications produced by university researchers. The system stores important information about researchers, departments, publications, publication venues, keywords, authorship details, and publication-keyword relationships.
+
+During the project, the system requirements were identified and converted into an ER/EER diagram. The ER/EER design was then transformed into a relational schema using appropriate tables, primary keys, foreign keys, and relationship tables. The schema was designed to reduce redundancy and avoid common data anomalies.
+
+MySQL was used as the database management system for implementing the project. The database tables were created using SQL CREATE TABLE statements with suitable constraints such as primary key constraints, foreign key constraints, unique constraints, domain constraints, entity integrity, and referential integrity. Sample data was inserted into the tables, and several SQL queries were created and tested to retrieve useful information from the database.
+
+The queries demonstrated different SQL features, including joins, subqueries, grouping, sorting, filtering, aggregate functions, calculated fields, LIKE, IN, NOT IN, and HAVING. These queries showed how the database can support reports such as publications by researcher, publications by department, publications by year, publications by keyword, and complete publication details.
+
+Overall, this project helped demonstrate the full database development process, starting from requirements collection and conceptual design to relational schema design, SQL implementation, data insertion, and query testing. The final database provides an organized and efficient way to store and retrieve research publication information.

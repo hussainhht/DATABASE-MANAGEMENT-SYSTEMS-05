@@ -1,3 +1,6 @@
+
+
+
 CREATE DATABASE ResearchPublicationTracker;
 USE ResearchPublicationTracker;
 
