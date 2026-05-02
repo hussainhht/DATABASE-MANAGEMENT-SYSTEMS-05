@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Publication Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">RPT</span>
+                <span>Research Publication Tracker</span>
+            </a>
+            <nav class="nav">
+                <a class="active" href="index.html">Dashboard</a>
+                <a href="departments.html">Departments</a>
+                <a href="researchers.html">Researchers</a>
+                <a href="publications.html">Publications</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+        </header>
+
+        <main class="page">
+            <section class="page-header">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p class="muted">ResearchPublicationTracker</p>
+                </div>
+                <a class="button-link secondary" href="reports.html">Open Reports</a>
+            </section>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Departments</div>
+                    <div class="stat-value" id="departmentCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Researchers</div>
+                    <div class="stat-value" id="researcherCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Publications</div>
+                    <div class="stat-value" id="publicationCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Venues</div>
+                    <div class="stat-value" id="venueCount">0</div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="toolbar">
+                    <h2>Latest Publications</h2>
+                    <span class="badge">Top 5</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead id="latestHead"></thead>
+                        <tbody id="latestBody"></tbody>
+                    </table>
+                </div>
+                <p id="dashboardStatus" class="status"></p>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        const { $, apiRequest, renderHead, renderTable, showStatus } = window.RPT;
+
+        async function loadDashboard() {
+            const status = $("#dashboardStatus");
+            const columns = [
+                { key: "publication_id", label: "ID" },
+                { key: "title", label: "Title" },
+                { key: "publication_year", label: "Year" },
+                { key: "publication_type", label: "Type" }
+            ];
+
+            renderHead($("#latestHead"), columns, false);
+
+            try {
+                const [departments, researchers, publications, venues, latest] = await Promise.all([
+                    apiRequest("/api/departments"),
+                    apiRequest("/api/researchers"),
+                    apiRequest("/api/publications"),
+                    apiRequest("/api/venues"),
+                    apiRequest("/api/reports/latest-publications")
+                ]);
+
+                $("#departmentCount").textContent = departments.length;
+                $("#researcherCount").textContent = researchers.length;
+                $("#publicationCount").textContent = publications.length;
+                $("#venueCount").textContent = venues.length;
+                renderTable($("#latestBody"), latest, columns);
+                status.textContent = "";
+            } catch (error) {
+                showStatus(status, error.message, true);
+            }
+        }
+
+        loadDashboard();
+    </script>
+</body>
+</html>

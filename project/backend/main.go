@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
+	_ "github.com/go-sql-driver/mysql"
 
 	"RPT/handlers"
 )
@@ -16,6 +18,11 @@ func main() {
 
 	handlers.RegisterRoutes(DB)
 
-	log.Println("Server running on http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	log.Println("Server running on http://localhost:" + port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

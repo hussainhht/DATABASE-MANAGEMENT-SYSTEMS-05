@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departments | Research Publication Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">RPT</span>
+                <span>Research Publication Tracker</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Dashboard</a>
+                <a class="active" href="departments.html">Departments</a>
+                <a href="researchers.html">Researchers</a>
+                <a href="publications.html">Publications</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+        </header>
+
+        <main class="page">
+            <section class="page-header">
+                <div>
+                    <h1>Departments</h1>
+                    <p class="muted">Department and college records</p>
+                </div>
+            </section>
+
+            <section class="grid two">
+                <div class="panel">
+                    <h2 id="formTitle">Add Department</h2>
+                    <form id="departmentForm" class="form-grid">
+                        <input type="hidden" id="departmentId" data-record-id>
+                        <div class="form-row">
+                            <label for="departmentName">Department Name</label>
+                            <input id="departmentName" name="department_name" type="text" maxlength="100" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="college">College</label>
+                            <input id="college" name="college" type="text" maxlength="100" required>
+                        </div>
+                        <div class="actions">
+                            <button type="submit" id="saveButton">Save</button>
+                            <button type="button" class="secondary" id="resetButton">Clear</button>
+                        </div>
+                        <p id="formStatus" class="status"></p>
+                    </form>
+                </div>
+
+                <div class="panel">
+                    <div class="toolbar">
+                        <h2>Department List</h2>
+                        <input class="search-input" id="searchInput" type="search" placeholder="Search">
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead id="departmentsHead"></thead>
+                            <tbody id="departmentsBody"></tbody>
+                        </table>
+                    </div>
+                    <p id="tableStatus" class="status"></p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/departments.js"></script>
+</body>
+</html>

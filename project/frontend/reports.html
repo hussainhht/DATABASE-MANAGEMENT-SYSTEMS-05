@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | Research Publication Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">RPT</span>
+                <span>Research Publication Tracker</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Dashboard</a>
+                <a href="departments.html">Departments</a>
+                <a href="researchers.html">Researchers</a>
+                <a href="publications.html">Publications</a>
+                <a class="active" href="reports.html">Reports</a>
+            </nav>
+        </header>
+
+        <main class="page">
+            <section class="page-header">
+                <div>
+                    <h1>Reports</h1>
+                    <p class="muted">SQL query outputs from the backend</p>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="report-controls">
+                    <div class="form-row">
+                        <label for="reportSelect">Report</label>
+                        <select id="reportSelect"></select>
+                    </div>
+                    <div class="form-row" id="parameterRow">
+                        <label for="parameterInput" id="parameterLabel">Keyword</label>
+                        <input id="parameterInput" type="text">
+                    </div>
+                    <button id="runReportButton" type="button">Run Report</button>
+                </div>
+                <p id="reportStatus" class="status"></p>
+            </section>
+
+            <section class="panel" style="margin-top: 16px;">
+                <div class="toolbar">
+                    <h2 id="reportTitle">Report Results</h2>
+                    <span class="badge" id="rowCount">0 rows</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead id="reportHead"></thead>
+                        <tbody id="reportBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/reports.js"></script>
+</body>
+</html>

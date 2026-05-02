@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Researchers | Research Publication Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">RPT</span>
+                <span>Research Publication Tracker</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Dashboard</a>
+                <a href="departments.html">Departments</a>
+                <a class="active" href="researchers.html">Researchers</a>
+                <a href="publications.html">Publications</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+        </header>
+
+        <main class="page">
+            <section class="page-header">
+                <div>
+                    <h1>Researchers</h1>
+                    <p class="muted">Faculty, students, and external researchers</p>
+                </div>
+            </section>
+
+            <section class="grid two">
+                <div class="panel">
+                    <h2 id="formTitle">Add Researcher</h2>
+                    <form id="researcherForm" class="form-grid">
+                        <input type="hidden" id="researcherId" data-record-id>
+                        <div class="form-row">
+                            <label for="fullName">Full Name</label>
+                            <input id="fullName" name="full_name" type="text" maxlength="100" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" maxlength="100" required>
+                        </div>
+                        <div class="form-row inline">
+                            <div>
+                                <label for="role">Role</label>
+                                <select id="role" name="role" required>
+                                    <option value="">Select role</option>
+                                    <option value="Faculty">Faculty</option>
+                                    <option value="Student">Student</option>
+                                    <option value="External Researcher">External Researcher</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="departmentId">Department</label>
+                                <select id="departmentId" name="department_id" required></select>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button type="submit" id="saveButton">Save</button>
+                            <button type="button" class="secondary" id="resetButton">Clear</button>
+                        </div>
+                        <p id="formStatus" class="status"></p>
+                    </form>
+                </div>
+
+                <div class="panel">
+                    <div class="toolbar">
+                        <h2>Researcher List</h2>
+                        <input class="search-input" id="searchInput" type="search" placeholder="Search">
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead id="researchersHead"></thead>
+                            <tbody id="researchersBody"></tbody>
+                        </table>
+                    </div>
+                    <p id="tableStatus" class="status"></p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/researchers.js"></script>
+</body>
+</html>
