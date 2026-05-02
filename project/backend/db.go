@@ -12,7 +12,7 @@ var DB *sql.DB
 
 func ConnectDB() {
 	username := "root"
-	password := "hussain3660"
+	password := ""
 	host := "127.0.0.1"
 	port := "3306"
 	dbName := "ResearchPublicationTracker"

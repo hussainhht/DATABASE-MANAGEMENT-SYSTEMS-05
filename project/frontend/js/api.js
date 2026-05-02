@@ -1,5 +1,7 @@
 (function () {
     const API_BASE = "";
+    const THEME_KEY = "rpt_theme";
+    const THEMES = ["light", "dark", "purple"];
 
     function $(selector) {
         return document.querySelector(selector);
@@ -140,6 +142,61 @@
         return Number.isNaN(numberValue) ? 0 : numberValue;
     }
 
+    function getSavedTheme() {
+        const savedTheme = localStorage.getItem(THEME_KEY);
+        return THEMES.includes(savedTheme) ? savedTheme : "purple";
+    }
+
+    function applyTheme(theme) {
+        const selectedTheme = THEMES.includes(theme) ? theme : "purple";
+
+        if (selectedTheme === "light") {
+            document.documentElement.removeAttribute("data-theme");
+        } else {
+            document.documentElement.setAttribute("data-theme", selectedTheme);
+        }
+
+        localStorage.setItem(THEME_KEY, selectedTheme);
+        document.querySelectorAll("[data-theme-choice]").forEach((button) => {
+            const isActive = button.dataset.themeChoice === selectedTheme;
+            button.classList.toggle("active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+        });
+    }
+
+    function setupThemeSwitcher() {
+        const topbar = document.querySelector(".topbar");
+        if (!topbar || document.querySelector(".theme-switcher")) {
+            applyTheme(getSavedTheme());
+            return;
+        }
+
+        const switcher = document.createElement("div");
+        switcher.className = "theme-switcher";
+        switcher.setAttribute("aria-label", "Theme");
+        switcher.innerHTML = `
+            <button type="button" data-theme-choice="light">Light</button>
+            <button type="button" data-theme-choice="dark">Dark</button>
+            <button type="button" data-theme-choice="purple">Purple</button>
+        `;
+
+        const nav = topbar.querySelector(".nav");
+        if (nav) {
+            topbar.insertBefore(switcher, nav);
+        } else {
+            topbar.appendChild(switcher);
+        }
+
+        switcher.addEventListener("click", (event) => {
+            const button = event.target.closest("[data-theme-choice]");
+            if (button) {
+                applyTheme(button.dataset.themeChoice);
+            }
+        });
+
+        applyTheme(getSavedTheme());
+    }
+
     window.RPT = {
         $,
         $all,
@@ -154,6 +211,10 @@
         renderHead,
         filterRows,
         populateSelect,
-        toNumber
+        toNumber,
+        applyTheme,
+        setupThemeSwitcher
     };
+
+    setupThemeSwitcher();
 })();

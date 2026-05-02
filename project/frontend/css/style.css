@@ -2,6 +2,9 @@
     --bg: #f6f7f9;
     --surface: #ffffff;
     --surface-2: #eef3f6;
+    --field-bg: #ffffff;
+    --table-head: #f9fafb;
+    --topbar-bg: rgba(255, 255, 255, 0.96);
     --text: #172026;
     --muted: #61707b;
     --line: #d8e0e6;
@@ -9,14 +12,66 @@
     --primary-dark: #115e59;
     --accent: #2563eb;
     --danger: #b42318;
+    --danger-dark: #8f1d14;
     --danger-bg: #fee4e2;
     --success: #047857;
     --success-bg: #d1fae5;
     --warning-bg: #fff7cc;
     --warning: #854d0e;
+    --focus-ring: rgba(15, 118, 110, 0.14);
     --radius: 8px;
     --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
     font-family: Arial, Helvetica, sans-serif;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #111827;
+    --surface: #1f2937;
+    --surface-2: #273449;
+    --field-bg: #111827;
+    --table-head: #182231;
+    --topbar-bg: rgba(17, 24, 39, 0.96);
+    --text: #f8fafc;
+    --muted: #b8c2cc;
+    --line: #384454;
+    --primary: #2dd4bf;
+    --primary-dark: #14b8a6;
+    --accent: #60a5fa;
+    --danger: #f87171;
+    --danger-dark: #ef4444;
+    --danger-bg: #4a1f24;
+    --success: #34d399;
+    --success-bg: #113d32;
+    --warning-bg: #493817;
+    --warning: #fbbf24;
+    --focus-ring: rgba(45, 212, 191, 0.18);
+    --shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+[data-theme="purple"] {
+    color-scheme: dark;
+    --bg: #12091f;
+    --surface: #1f1230;
+    --surface-2: #2c1844;
+    --field-bg: #170d27;
+    --table-head: #25143a;
+    --topbar-bg: rgba(18, 9, 31, 0.96);
+    --text: #fbf7ff;
+    --muted: #cdbde2;
+    --line: #4a3266;
+    --primary: #c084fc;
+    --primary-dark: #a855f7;
+    --accent: #67e8f9;
+    --danger: #fb7185;
+    --danger-dark: #f43f5e;
+    --danger-bg: #4c1428;
+    --success: #6ee7b7;
+    --success-bg: #12372f;
+    --warning-bg: #4a3513;
+    --warning: #fcd34d;
+    --focus-ring: rgba(192, 132, 252, 0.24);
+    --shadow: 0 14px 34px rgba(0, 0, 0, 0.36);
 }
 
 * {
@@ -28,6 +83,7 @@ body {
     background: var(--bg);
     color: var(--text);
     font-size: 15px;
+    transition: background-color 180ms ease, color 180ms ease;
 }
 
 a {
@@ -49,7 +105,7 @@ a {
     gap: 24px;
     padding: 14px 28px;
     border-bottom: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.96);
+    background: var(--topbar-bg);
     backdrop-filter: blur(12px);
 }
 
@@ -90,6 +146,37 @@ a {
 .nav a.active {
     background: var(--surface-2);
     color: var(--text);
+}
+
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 3px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-2);
+}
+
+.theme-switcher button {
+    min-height: 30px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 5px 9px;
+}
+
+.theme-switcher button:hover {
+    background: var(--surface);
+    color: var(--text);
+}
+
+.theme-switcher button.active {
+    background: var(--surface);
+    color: var(--primary);
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
 }
 
 .page {
@@ -200,7 +287,7 @@ textarea {
     min-height: 40px;
     border: 1px solid var(--line);
     border-radius: 7px;
-    background: #fff;
+    background: var(--field-bg);
     color: var(--text);
     font: inherit;
     padding: 9px 10px;
@@ -215,7 +302,12 @@ input:focus,
 select:focus,
 textarea:focus {
     border-color: var(--primary);
-    outline: 3px solid rgba(15, 118, 110, 0.14);
+    outline: 3px solid var(--focus-ring);
+}
+
+::placeholder {
+    color: var(--muted);
+    opacity: 0.78;
 }
 
 .actions {
@@ -260,7 +352,7 @@ button.danger {
 }
 
 button.danger:hover {
-    background: #8f1d14;
+    background: var(--danger-dark);
 }
 
 button.compact {
@@ -295,7 +387,7 @@ td {
 }
 
 th {
-    background: #f9fafb;
+    background: var(--table-head);
     color: var(--muted);
     font-size: 13px;
     font-weight: 800;
@@ -359,6 +451,14 @@ tr:last-child td {
 
     .nav {
         justify-content: flex-start;
+    }
+
+    .theme-switcher {
+        width: 100%;
+    }
+
+    .theme-switcher button {
+        flex: 1;
     }
 
     .grid.two,
