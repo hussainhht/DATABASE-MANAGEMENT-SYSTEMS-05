@@ -109,3 +109,4 @@ The database should follow these business rules:
 - Each publication can have many keywords.
 - Each keyword can be linked to many publications.
 - The author order must be stored for each researcher in a publication.
+

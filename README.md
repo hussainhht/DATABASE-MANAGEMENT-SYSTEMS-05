@@ -10,6 +10,8 @@
 
 ---
 
+## DBMS Used: MySQL
+
 ## Prepared By
 
 | Student | Name | ID |
@@ -222,7 +224,7 @@ This project also provides practice in important database management concepts, i
 - ER/EER Diagram
 - Relational Schema
 - Constraints
-- DBMS Used
+- DBMS Used: MySQL
 - SQL Create Tables
 - Inserted Data Samples
 - SQL Queries + Results
