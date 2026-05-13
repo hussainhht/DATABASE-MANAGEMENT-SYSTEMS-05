@@ -1,5 +1,3 @@
--- Student ID: 202405120
--- Student Name: hussain ali h. ali
 
 CREATE DATABASE ResearchPublicationTracker;
 USE ResearchPublicationTracker;
