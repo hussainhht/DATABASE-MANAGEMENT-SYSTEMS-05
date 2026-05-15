@@ -1,7 +1,7 @@
 -- ITCS285 Database Management Systems - Lab #3
 -- Student ID: 202405120
 -- Student Name: hussain ali h. ali
--- MySQL queries for the Lab #1 bank database.
+-- MySQL queries for the Lab #3 bank database.
 
 USE itcs285_lab1;
 
