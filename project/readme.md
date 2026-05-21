@@ -184,6 +184,7 @@ go run .
 ```
 
 **Expected Output:**
+
 ```
 Server running on http://localhost:8080
 ```
@@ -200,12 +201,12 @@ You should see the Research Publication Tracker dashboard.
 
 ### Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| **MySQL connection error** | Verify MySQL is running and check credentials in `db.go` |
-| **Port 8080 already in use** | Change port in `main.go` or stop the conflicting application |
-| **Missing Go dependencies** | Run `go mod tidy` in the backend directory |
-| **Database not created** | Verify SQL files exist in `db/SQL/` and MySQL user has CREATE privileges |
+| Issue                        | Solution                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------ |
+| **MySQL connection error**   | Verify MySQL is running and check credentials in `db.go`                 |
+| **Port 8080 already in use** | Change port in `main.go` or stop the conflicting application             |
+| **Missing Go dependencies**  | Run `go mod tidy` in the backend directory                               |
+| **Database not created**     | Verify SQL files exist in `db/SQL/` and MySQL user has CREATE privileges |
 
 ## API Endpoints Overview
 
