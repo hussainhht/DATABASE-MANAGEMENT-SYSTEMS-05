@@ -138,37 +138,74 @@ project/
 | **Database** | MySQL 5.7+                        |
 | **Driver**   | github.com/go-sql-driver/mysql    |
 
-## Quick Start
+## Quick Start - How to Run the Server
 
-### 1. Database Setup
+### Prerequisites
+
+- **Go**: Version 1.24.2 or higher installed
+- **MySQL**: Version 5.7 or higher running
+- **MySQL Credentials**: Root or user account with database creation privileges
+
+### Step 1: Database Setup
+
+Navigate to the project root and create the database and tables:
 
 ```bash
 # Create database and tables
-mysql -u root < db/SQL/01_create_database_and_tables.sql
-
-# Insert sample data
-mysql -u root < db/SQL/02_insert_sample_data.sql
+mysql -u root -p < db/SQL/01_create_database_and_tables.sql
 ```
 
-### 2. Backend Setup
+(You'll be prompted to enter your MySQL password)
+
+Then insert sample data:
+
+```bash
+# Insert sample data
+mysql -u root -p < db/SQL/02_insert_sample_data.sql
+```
+
+### Step 2: Backend Dependencies Installation
+
+Navigate to the backend directory and download required Go packages:
 
 ```bash
 cd backend
 go get github.com/go-sql-driver/mysql
+go mod download
 ```
 
-### 3. Run Server
+### Step 3: Start the Server
+
+Run the Go backend server:
 
 ```bash
 cd backend
 go run .
 ```
 
-Server starts on `http://localhost:8080`
+**Expected Output:**
+```
+Server running on http://localhost:8080
+```
 
-### 4. Access Application
+### Step 4: Access the Application
 
-Open browser to `http://localhost:8080`
+Open your web browser and navigate to:
+
+```
+http://localhost:8080
+```
+
+You should see the Research Publication Tracker dashboard.
+
+### Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| **MySQL connection error** | Verify MySQL is running and check credentials in `db.go` |
+| **Port 8080 already in use** | Change port in `main.go` or stop the conflicting application |
+| **Missing Go dependencies** | Run `go mod tidy` in the backend directory |
+| **Database not created** | Verify SQL files exist in `db/SQL/` and MySQL user has CREATE privileges |
 
 ## API Endpoints Overview
 
